@@ -1,0 +1,1598 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EcoSphere | Sustainable Living Store</title>
+    <meta name="description" content="Shop eco-friendly bamboo bottles, reusable bags, plantable stationery, notebooks, and sustainable lunch boxes. Zero waste, high quality products.">
+    
+    <!-- SEO JSON-LD Structured Data -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Store",
+      "name": "EcoSphere Store",
+      "image": "https://images.unsplash.com/photo-1542601906990-b4d3fb778b09",
+      "description": "Premium eco-friendly products store including bamboo bottles, reusable bags, and plantable stationery.",
+      "currenciesAccepted": "INR",
+      "paymentAccepted": "Cash, Credit Card, UPI, Paytm",
+      "priceRange": "₹₹"
+    }
+    </script>
+
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            50: '#f0fdf4',
+                            100: '#dcfce7',
+                            500: '#10b981', // Emerald green
+                            600: '#059669',
+                            700: '#047857',
+                        },
+                        ocean: {
+                            50: '#f0f9ff',
+                            100: '#e0f2fe',
+                            500: '#06b6d4', // Cyan/Blue
+                            600: '#0284c7',
+                            700: '#0369a1',
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f8fafc;
+            color: #1e293b;
+        }
+
+        /* Hero Floating Animations for Eco Products */
+        @keyframes floatSlow {
+            0%, 100% { transform: translateY(0px) rotate(0deg); }
+            50% { transform: translateY(-18px) rotate(3deg); }
+        }
+
+        @keyframes floatMedium {
+            0%, 100% { transform: translateY(0px) rotate(0deg); }
+            50% { transform: translateY(-25px) rotate(-4deg); }
+        }
+
+        @keyframes floatFast {
+            0%, 100% { transform: translateY(0px) rotate(0deg); }
+            50% { transform: translateY(-12px) rotate(5deg); }
+        }
+
+        @keyframes pulseGlow {
+            0%, 100% { filter: drop-shadow(0 10px 15px rgba(16, 185, 129, 0.25)); }
+            50% { filter: drop-shadow(0 20px 25px rgba(2, 132, 199, 0.4)); }
+        }
+
+        .animate-float-1 { animation: floatSlow 6s ease-in-out infinite; }
+        .animate-float-2 { animation: floatMedium 5s ease-in-out infinite 1s; }
+        .animate-float-3 { animation: floatFast 7s ease-in-out infinite 0.5s; }
+        .animate-glow { animation: pulseGlow 4s infinite; }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #e2e8f0;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #059669;
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #047857;
+        }
+
+        /* Glassmorphism effects */
+        .glass-card {
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+        }
+
+        /* Printable Invoice Styling */
+        @media print {
+            body * {
+                visibility: hidden;
+            }
+            #printable-invoice, #printable-invoice * {
+                visibility: visible;
+            }
+            #printable-invoice {
+                position: absolute;
+                left: 0;
+                top: 0;
+                width: 100%;
+                padding: 20px;
+                background: white;
+            }
+            .no-print {
+                display: none !important;
+            }
+        }
+    </style>
+</head>
+<body class="flex flex-col min-h-screen">
+
+    <!-- Toast Notification Overlay -->
+    <div id="toast-container" class="fixed bottom-5 right-5 z-50 flex flex-col gap-2 pointer-events-none"></div>
+
+    <!-- Top SEO Announcement Bar -->
+    <div class="bg-gradient-to-r from-teal-700 via-emerald-600 to-sky-700 text-white text-xs sm:text-sm py-2 px-4 text-center font-medium shadow-sm">
+        <span class="inline-block animate-pulse mr-2"><i class="fa-solid fa-seedling"></i></span>
+        Free Eco-Friendly Express Delivery on orders over ₹499 | Plastic-Free Packaging Guaranteed!
+    </div>
+
+    <!-- Header Navigation -->
+    <header class="sticky top-0 z-40 bg-white/90 backdrop-blur-md border-b border-emerald-100 shadow-xs transition-all">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-20">
+                
+                <!-- Logo -->
+                <a href="#home" onclick="navigateTo('home')" class="flex items-center gap-3 group">
+                    <div class="w-11 h-11 rounded-2xl bg-gradient-to-tr from-emerald-500 via-teal-600 to-sky-500 flex items-center justify-center text-white shadow-md shadow-emerald-500/20 group-hover:scale-105 transition-transform">
+                        <i class="fa-solid fa-leaf text-xl"></i>
+                    </div>
+                    <div>
+                        <span class="text-2xl font-extrabold tracking-tight bg-gradient-to-r from-emerald-700 via-teal-600 to-sky-600 bg-clip-text text-transparent">EcoSphere</span>
+                        <span class="block text-[10px] uppercase font-bold tracking-widest text-emerald-600">Earth First Living</span>
+                    </div>
+                </a>
+
+                <!-- Desktop Navigation Links -->
+                <nav class="hidden md:flex items-center gap-8 font-medium text-slate-700 text-sm">
+                    <button onclick="navigateTo('home')" class="nav-link hover:text-emerald-600 transition-colors py-1">Home</button>
+                    <button onclick="navigateTo('shop')" class="nav-link hover:text-emerald-600 transition-colors py-1">Shop All</button>
+                    
+                    <!-- Categories Dropdown -->
+                    <div class="relative group">
+                        <button class="flex items-center gap-1 hover:text-emerald-600 transition-colors py-1">
+                            Categories <i class="fa-solid fa-chevron-down text-xs ml-1"></i>
+                        </button>
+                        <div class="absolute left-0 top-full mt-2 w-56 bg-white rounded-2xl shadow-xl border border-slate-100 py-3 hidden group-hover:block transition-all z-50">
+                            <a href="#shop" onclick="filterByCategory('Bamboo Products')" class="block px-4 py-2 hover:bg-emerald-50 text-slate-700 hover:text-emerald-700 text-sm"><i class="fa-solid fa-vial-stem text-emerald-500 mr-2"></i>Bamboo Products</a>
+                            <a href="#shop" onclick="filterByCategory('Bags & Tote')" class="block px-4 py-2 hover:bg-emerald-50 text-slate-700 hover:text-emerald-700 text-sm"><i class="fa-solid fa-bag-shopping text-sky-500 mr-2"></i>Reusable Bags</a>
+                            <a href="#shop" onclick="filterByCategory('Plantable Stationery')" class="block px-4 py-2 hover:bg-emerald-50 text-slate-700 hover:text-emerald-700 text-sm"><i class="fa-solid fa-pen-ruler text-teal-500 mr-2"></i>Plantable Stationery</a>
+                            <a href="#shop" onclick="filterByCategory('Eco Notebooks')" class="block px-4 py-2 hover:bg-emerald-50 text-slate-700 hover:text-emerald-700 text-sm"><i class="fa-solid fa-book-open text-emerald-600 mr-2"></i>Eco Notebooks</a>
+                            <a href="#shop" onclick="filterByCategory('Reusable Lunch Boxes')" class="block px-4 py-2 hover:bg-emerald-50 text-slate-700 hover:text-emerald-700 text-sm"><i class="fa-solid fa-utensils text-sky-600 mr-2"></i>Lunch Boxes</a>
+                        </div>
+                    </div>
+
+                    <button onclick="navigateTo('about')" class="nav-link hover:text-emerald-600 transition-colors py-1">Our Mission</button>
+                </nav>
+
+                <!-- Right Actions: Search & Cart -->
+                <div class="flex items-center gap-4">
+                    <!-- Quick Search Input -->
+                    <div class="relative hidden sm:block w-48 lg:w-64">
+                        <input type="text" id="global-search-input" onkeyup="handleGlobalSearch(event)" placeholder="Search eco products..." class="w-full bg-slate-100/80 border border-slate-200 focus:border-emerald-500 text-xs text-slate-800 rounded-full py-2.5 pl-9 pr-4 outline-none transition-all focus:bg-white focus:ring-2 focus:ring-emerald-500/20">
+                        <i class="fa-solid fa-magnifying-glass absolute left-3.5 top-3 text-slate-400 text-xs"></i>
+                    </div>
+
+                    <!-- Wishlist Button -->
+                    <button onclick="showWishlistModal()" class="relative p-2.5 text-slate-600 hover:text-emerald-600 rounded-full hover:bg-emerald-50 transition-colors" title="Wishlist">
+                        <i class="fa-regular fa-heart text-xl"></i>
+                        <span id="wishlist-badge" class="hidden absolute top-1 right-1 w-4 h-4 bg-rose-500 text-white text-[10px] font-bold rounded-full flex items-center justify-center">0</span>
+                    </button>
+
+                    <!-- Cart Trigger Button -->
+                    <button onclick="toggleCartDrawer()" class="relative flex items-center gap-2 bg-gradient-to-r from-emerald-600 to-teal-600 hover:from-emerald-700 hover:to-teal-700 text-white px-4 py-2.5 rounded-full shadow-md shadow-emerald-600/20 transition-all font-medium text-sm">
+                        <i class="fa-solid fa-basket-shopping text-base"></i>
+                        <span class="hidden sm:inline">Cart</span>
+                        <span id="cart-count-badge" class="bg-white text-emerald-800 font-extrabold text-xs px-2 py-0.5 rounded-full min-w-[20px] text-center">0</span>
+                    </button>
+
+                    <!-- Mobile Menu Trigger -->
+                    <button onclick="toggleMobileMenu()" class="md:hidden p-2 text-slate-600 hover:text-emerald-600">
+                        <i class="fa-solid fa-bars text-2xl"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Mobile Drawer Navigation -->
+        <div id="mobile-menu" class="hidden md:hidden bg-white border-b border-slate-200 px-4 pt-2 pb-6">
+            <div class="mb-3">
+                <input type="text" id="mobile-search-input" onkeyup="handleGlobalSearch(event)" placeholder="Search bamboo, bags, stationary..." class="w-full bg-slate-100 border border-slate-200 text-sm py-2 px-4 rounded-xl">
+            </div>
+            <div class="flex flex-col gap-2 font-medium text-slate-700">
+                <button onclick="navigateTo('home'); toggleMobileMenu()" class="text-left py-2 border-b border-slate-100 text-emerald-700"><i class="fa-solid fa-house mr-2"></i>Home</button>
+                <button onclick="navigateTo('shop'); toggleMobileMenu()" class="text-left py-2 border-b border-slate-100"><i class="fa-solid fa-store mr-2"></i>Shop All Products</button>
+                <button onclick="filterByCategory('Bamboo Products'); toggleMobileMenu()" class="text-left py-2 border-b border-slate-100 text-sm pl-4 text-slate-600">• Bamboo Products</button>
+                <button onclick="filterByCategory('Bags & Tote'); toggleMobileMenu()" class="text-left py-2 border-b border-slate-100 text-sm pl-4 text-slate-600">• Reusable Bags</button>
+                <button onclick="filterByCategory('Plantable Stationery'); toggleMobileMenu()" class="text-left py-2 border-b border-slate-100 text-sm pl-4 text-slate-600">• Plantable Stationery</button>
+                <button onclick="filterByCategory('Eco Notebooks'); toggleMobileMenu()" class="text-left py-2 border-b border-slate-100 text-sm pl-4 text-slate-600">• Eco Notebooks</button>
+                <button onclick="filterByCategory('Reusable Lunch Boxes'); toggleMobileMenu()" class="text-left py-2 border-b border-slate-100 text-sm pl-4 text-slate-600">• Reusable Lunch Boxes</button>
+                <button onclick="navigateTo('about'); toggleMobileMenu()" class="text-left py-2"><i class="fa-solid fa-heart mr-2 text-emerald-500"></i>Our Mission</button>
+            </div>
+        </div>
+    </header>
+
+    <!-- MAIN CONTENT CONTAINERS (SPA Dynamic View Router) -->
+    <main id="app-container" class="flex-grow">
+        <!-- Content will be injected dynamically by JS router -->
+    </main>
+
+    <!-- Slide-over Cart Drawer -->
+    <div id="cart-drawer-overlay" class="fixed inset-0 bg-slate-900/60 backdrop-blur-xs z-50 hidden transition-opacity" onclick="toggleCartDrawer()"></div>
+    <aside id="cart-drawer" class="fixed top-0 right-0 h-full w-full max-w-md bg-white z-50 shadow-2xl transform translate-x-full transition-transform duration-300 flex flex-col">
+        <!-- Drawer Header -->
+        <div class="p-5 border-b border-slate-100 flex items-center justify-between bg-gradient-to-r from-emerald-50 to-sky-50">
+            <div class="flex items-center gap-2">
+                <i class="fa-solid fa-bag-shopping text-emerald-600 text-xl"></i>
+                <h3 class="font-bold text-lg text-slate-800">Your Eco Shopping Cart</h3>
+            </div>
+            <button onclick="toggleCartDrawer()" class="w-8 h-8 rounded-full bg-slate-200/80 hover:bg-slate-300 text-slate-600 flex items-center justify-center transition-colors">
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+        </div>
+
+        <!-- Cart Items List -->
+        <div id="cart-drawer-items" class="flex-grow overflow-y-auto p-5 space-y-4">
+            <!-- Dynamic Cart Items injected here -->
+        </div>
+
+        <!-- Cart Footer & Checkout Action -->
+        <div class="p-5 border-t border-slate-100 bg-slate-50/80 space-y-3">
+            <div class="flex justify-between text-sm text-slate-600">
+                <span>Subtotal</span>
+                <span id="cart-drawer-subtotal" class="font-semibold text-slate-800">₹0</span>
+            </div>
+            <div class="flex justify-between text-sm text-slate-600">
+                <span>Plastic Bottles Saved</span>
+                <span id="cart-drawer-eco-impact" class="font-bold text-emerald-600">0 Items</span>
+            </div>
+            <div class="flex justify-between text-base font-bold text-slate-900 pt-2 border-t border-slate-200">
+                <span>Total Amount</span>
+                <span id="cart-drawer-total" class="text-xl text-emerald-600">₹0</span>
+            </div>
+
+            <div class="grid grid-cols-2 gap-3 pt-2">
+                <button onclick="toggleCartDrawer(); navigateTo('cart');" class="w-full py-3 px-4 bg-slate-200 hover:bg-slate-300 text-slate-800 font-semibold rounded-xl text-sm transition-colors text-center">
+                    View Full Cart
+                </button>
+                <button onclick="toggleCartDrawer(); navigateTo('checkout');" class="w-full py-3 px-4 bg-gradient-to-r from-emerald-600 to-sky-600 hover:from-emerald-700 hover:to-sky-700 text-white font-semibold rounded-xl text-sm transition-all shadow-md shadow-emerald-600/20 text-center">
+                    Proceed to Checkout <i class="fa-solid fa-arrow-right ml-1"></i>
+                </button>
+            </div>
+        </div>
+    </aside>
+
+    <!-- Footer Section -->
+    <footer class="bg-slate-900 text-slate-300 pt-16 pb-12 border-t border-emerald-900/50 mt-auto">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-10 pb-12 border-b border-slate-800">
+                
+                <!-- Col 1: Brand Info -->
+                <div class="lg:col-span-2 space-y-4">
+                    <div class="flex items-center gap-3">
+                        <div class="w-10 h-10 rounded-xl bg-emerald-500 flex items-center justify-center text-white">
+                            <i class="fa-solid fa-leaf text-xl"></i>
+                        </div>
+                        <span class="text-2xl font-extrabold text-white">EcoSphere</span>
+                    </div>
+                    <p class="text-slate-400 text-sm leading-relaxed max-w-sm">
+                        Empowering eco-conscious lifestyles across India. Every single product in our catalog is sustainably sourced, plastic-free, and crafted to leave zero footprint on our planet.
+                    </p>
+                    <div class="flex items-center gap-3 pt-2">
+                        <a href="#" class="w-9 h-9 rounded-full bg-slate-800 hover:bg-emerald-600 text-slate-300 hover:text-white flex items-center justify-center transition-colors"><i class="fa-brands fa-instagram"></i></a>
+                        <a href="#" class="w-9 h-9 rounded-full bg-slate-800 hover:bg-emerald-600 text-slate-300 hover:text-white flex items-center justify-center transition-colors"><i class="fa-brands fa-facebook"></i></a>
+                        <a href="#" class="w-9 h-9 rounded-full bg-slate-800 hover:bg-emerald-600 text-slate-300 hover:text-white flex items-center justify-center transition-colors"><i class="fa-brands fa-x-twitter"></i></a>
+                        <a href="#" class="w-9 h-9 rounded-full bg-slate-800 hover:bg-emerald-600 text-slate-300 hover:text-white flex items-center justify-center transition-colors"><i class="fa-brands fa-youtube"></i></a>
+                    </div>
+                </div>
+
+                <!-- Col 2: Quick Links -->
+                <div>
+                    <h4 class="text-white font-semibold text-base mb-4 border-l-2 border-emerald-500 pl-3">Quick Navigation</h4>
+                    <ul class="space-y-2.5 text-sm">
+                        <li><a href="#home" onclick="navigateTo('home')" class="hover:text-emerald-400 transition-colors">Home Page</a></li>
+                        <li><a href="#shop" onclick="navigateTo('shop')" class="hover:text-emerald-400 transition-colors">Shop All Eco Store</a></li>
+                        <li><a href="#about" onclick="navigateTo('about')" class="hover:text-emerald-400 transition-colors">Our Sustainability Pledge</a></li>
+                        <li><a href="#cart" onclick="navigateTo('cart')" class="hover:text-emerald-400 transition-colors">Shopping Cart</a></li>
+                        <li><a href="#checkout" onclick="navigateTo('checkout')" class="hover:text-emerald-400 transition-colors">Secure Checkout</a></li>
+                    </ul>
+                </div>
+
+                <!-- Col 3: Product Categories SEO -->
+                <div>
+                    <h4 class="text-white font-semibold text-base mb-4 border-l-2 border-sky-500 pl-3">Eco Categories</h4>
+                    <ul class="space-y-2.5 text-sm">
+                        <li><button onclick="filterByCategory('Bamboo Products')" class="hover:text-emerald-400 transition-colors">Bamboo Bottles & Flasks</button></li>
+                        <li><button onclick="filterByCategory('Bags & Tote')" class="hover:text-emerald-400 transition-colors">Organic Reusable Tote Bags</button></li>
+                        <li><button onclick="filterByCategory('Plantable Stationery')" class="hover:text-emerald-400 transition-colors">Plantable Seed Pencils</button></li>
+                        <li><button onclick="filterByCategory('Eco Notebooks')" class="hover:text-emerald-400 transition-colors">Recycled Seed Notebooks</button></li>
+                        <li><button onclick="filterByCategory('Reusable Lunch Boxes')" class="hover:text-emerald-400 transition-colors">Bento & Stainless Steel Lunch Boxes</button></li>
+                    </ul>
+                </div>
+
+                <!-- Col 4: Newsletter -->
+                <div>
+                    <h4 class="text-white font-semibold text-base mb-4 border-l-2 border-teal-500 pl-3">Join Green Club</h4>
+                    <p class="text-xs text-slate-400 mb-3">Subscribe to get 10% off your first eco order & weekly green tips.</p>
+                    <form onsubmit="handleSubscribe(event)" class="space-y-2">
+                        <input type="email" required placeholder="Enter your email" class="w-full bg-slate-800 border border-slate-700 text-sm px-3.5 py-2.5 rounded-xl text-white focus:outline-none focus:border-emerald-500">
+                        <button type="submit" class="w-full py-2.5 bg-gradient-to-r from-emerald-600 to-sky-600 hover:from-emerald-700 hover:to-sky-700 text-white font-medium rounded-xl text-xs uppercase tracking-wider transition-all">Subscribe Now</button>
+                    </form>
+                </div>
+            </div>
+
+            <!-- Footer Bottom -->
+            <div class="pt-8 flex flex-col sm:flex-row items-center justify-between text-xs text-slate-500 gap-4">
+                <p>&copy; 2026 EcoSphere India Inc. Built with ❤️ for a Greener Tomorrow. All rights reserved.</p>
+                <div class="flex items-center gap-4 text-lg text-slate-400">
+                    <i class="fa-brands fa-cc-visa" title="Visa"></i>
+                    <i class="fa-brands fa-cc-mastercard" title="Mastercard"></i>
+                    <i class="fa-solid fa-mobile-screen-button" title="UPI & Paytm"></i>
+                    <i class="fa-solid fa-truck-fast" title="COD Available"></i>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Comprehensive Eco-Friendly Products Dataset
+        const PRODUCTS = [
+            {
+                id: 'eco-01',
+                name: 'Insulated Organic Bamboo Water Bottle (750ml)',
+                category: 'Bamboo Products',
+                price: 799,
+                originalPrice: 1199,
+                rating: 4.9,
+                reviewsCount: 142,
+                image: 'https://images.unsplash.com/photo-1602143407151-7111542de6e8?auto=format&fit=crop&w=800&q=80',
+                badge: 'Trending Best-Seller',
+                ecoPoints: 25, // plastic bottles saved
+                description: 'Handcrafted natural bamboo outer casing with double-walled food-grade 304 stainless steel interior. Keeps liquids hot for 12 hours and cold for 24 hours. Leak-proof and zero chemical leaching.',
+                specs: ['Capacity: 750 ML', 'Material: Natural Bamboo & Stainless Steel', '100% BPA Free', 'Weight: 320g']
+            },
+            {
+                id: 'eco-02',
+                name: 'Heavy Duty Organic Cotton Canvas Tote Bag',
+                category: 'Bags & Tote',
+                price: 349,
+                originalPrice: 599,
+                rating: 4.8,
+                reviewsCount: 98,
+                image: 'https://images.unsplash.com/photo-1597484661643-2f5fef640dd1?auto=format&fit=crop&w=800&q=80',
+                badge: '100% Organic',
+                ecoPoints: 50,
+                description: 'Reinforced stitch handles, interior key pocket, and spacious 20L storage capacity. Replaces over 500 single-use plastic grocery bags. Washable and biodegradable.',
+                specs: ['Material: 100% Unbleached Organic Cotton', 'Dimensions: 40 x 38 x 12 cm', 'Weight Capacity: Up to 15 kg']
+            },
+            {
+                id: 'eco-03',
+                name: 'Plantable Seed Pencils & Pens Combo Box (Set of 10)',
+                category: 'Plantable Stationery',
+                price: 299,
+                originalPrice: 450,
+                rating: 4.9,
+                reviewsCount: 215,
+                image: 'https://images.unsplash.com/photo-1585336261026-875a60a1c96b?auto=format&fit=crop&w=800&q=80',
+                badge: 'Plants into Flowers',
+                ecoPoints: 15,
+                description: 'Contains eco pencils and pens containing non-GMO seeds (Marigold, Tomato, Basil, Sunflower) at the end. Once too short to write, plant them upside down in soil and watch them grow!',
+                specs: ['100% Recycled Newspaper Body', 'Non-Toxic Graphite & Eco Ink', 'Seeds Included: 5 Herb & 5 Flower types']
+            },
+            {
+                id: 'eco-04',
+                name: 'Handmade Seed Paper Eco Notebook (A5, 120 Pages)',
+                category: 'Eco Notebooks',
+                price: 449,
+                originalPrice: 699,
+                rating: 4.7,
+                reviewsCount: 76,
+                image: 'https://images.unsplash.com/photo-1544716278-ca5e3f4abd8c?auto=format&fit=crop&w=800&q=80',
+                badge: 'Plantable Cover',
+                ecoPoints: 20,
+                description: 'Cover made with wildflower seed paper! Pages made from 100% post-consumer cotton rag recycled paper. Zero trees cut down. Soft textured feel suitable for ink & pencil drawing.',
+                specs: ['Size: A5 Unruled', 'Page Count: 120 Pages', 'Binding: Hand-stitched Thread']
+            },
+            {
+                id: 'eco-05',
+                name: 'Leakproof Bamboo Fiber & Stainless Lunch Box',
+                category: 'Reusable Lunch Boxes',
+                price: 899,
+                originalPrice: 1399,
+                rating: 4.9,
+                reviewsCount: 189,
+                image: 'https://images.unsplash.com/photo-1584269600464-37b1b58a9fe7?auto=format&fit=crop&w=800&q=80',
+                badge: 'Meal Prep Favorite',
+                ecoPoints: 40,
+                description: 'Dual compartment stainless steel bento lunch box with authentic bamboo lid and sauce cup. Dishwasher safe, rust proof, and airtight silicone seal prevents spills.',
+                specs: ['Capacity: 1200ml', 'Compartments: 2 Removable Dividers', 'Includes: Cutlery Set & Elastic Strap']
+            },
+            {
+                id: 'eco-06',
+                name: 'Natural Bamboo Toothbrush & Travel Case Set',
+                category: 'Bamboo Products',
+                price: 249,
+                originalPrice: 399,
+                rating: 4.8,
+                reviewsCount: 310,
+                image: 'https://images.unsplash.com/photo-1607613009820-a29f7bb81c04?auto=format&fit=crop&w=800&q=80',
+                badge: 'Zero Plastic',
+                ecoPoints: 12,
+                description: 'Ergonomic biodegradable Moso bamboo handle with charcoal-infused soft bristles. Antifungal and naturally antimicrobial. Comes with ventilated bamboo travel tube.',
+                specs: ['Pack of 4 Toothbrushes + 1 Travel Case', 'Bristles: Charcoal Soft', '100% Compostable']
+            },
+            {
+                id: 'eco-07',
+                name: 'Jute Fiber Grocery & Shopping Bag with Zip',
+                category: 'Bags & Tote',
+                price: 299,
+                originalPrice: 499,
+                rating: 4.6,
+                reviewsCount: 84,
+                image: 'https://images.unsplash.com/photo-1544816155-12df9643f363?auto=format&fit=crop&w=800&q=80',
+                badge: 'Eco Duty',
+                ecoPoints: 30,
+                description: 'Heavy duty laminated natural jute shopper bag with sturdy padded handles and smooth top zipper. Ideal for vegetable shopping and daily errands.',
+                specs: ['Material: 100% Golden Jute Fiber', 'Lamination: Water Resistant Inner Layer', 'Size: 15" x 13" x 6"']
+            },
+            {
+                id: 'eco-08',
+                name: 'Plantable Eco Calendar & Desktop Planner',
+                category: 'Plantable Stationery',
+                price: 399,
+                originalPrice: 599,
+                rating: 4.9,
+                reviewsCount: 62,
+                image: 'https://images.unsplash.com/photo-1506784983877-45594efa4cbe?auto=format&fit=crop&w=800&q=80',
+                badge: 'New Arrival',
+                ecoPoints: 18,
+                description: '12-Month desktop calendar printed on seed embedded paper. Tear off each month after use, soak in water for 24h, cover with soil, and grow organic herbs!',
+                specs: ['Stand: Reusable Wooden Base', 'Includes: Organic Plant seeds in each sheet', '100% Biodegradable']
+            }
+        ];
+
+        let cart = JSON.parse(localStorage.getItem('ecosphere_cart')) || [];
+        let wishlist = JSON.parse(localStorage.getItem('ecosphere_wishlist')) || [];
+        let currentFilterCategory = 'All';
+        let searchQuery = '';
+        let priceFilterMax = 2000;
+        let selectedSort = 'featured';
+        let activePage = 'home';
+        let activeProductId = null;
+
+        // Initialize App on DOM Load
+        window.onload = function() {
+            updateCartBadge();
+            updateWishlistBadge();
+            handleHashRouting();
+            window.addEventListener('hashchange', handleHashRouting);
+        };
+
+        function handleHashRouting() {
+            const hash = window.location.hash.replace('#', '') || 'home';
+            if (hash.startsWith('product/')) {
+                const prodId = hash.split('/')[1];
+                openProductDetail(prodId);
+            } else {
+                navigateTo(hash, false);
+            }
+        }
+
+        function navigateTo(page, updateHash = true) {
+            activePage = page;
+            if (updateHash) {
+                window.location.hash = page;
+            }
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+
+            const app = document.getElementById('app-container');
+            
+            if (page === 'home') {
+                app.innerHTML = renderHomePage();
+                initHero3DEffects();
+            } else if (page === 'shop') {
+                app.innerHTML = renderShopPage();
+            } else if (page === 'cart') {
+                app.innerHTML = renderFullCartPage();
+            } else if (page === 'checkout') {
+                app.innerHTML = renderCheckoutPage();
+            } else if (page === 'about') {
+                app.innerHTML = renderAboutPage();
+            } else if (page === 'order-confirmation') {
+                app.innerHTML = renderOrderConfirmationPage();
+            } else {
+                app.innerHTML = renderHomePage();
+            }
+        }
+
+        function renderHomePage() {
+            const trendingProducts = PRODUCTS.slice(0, 4);
+
+            return `
+                <!-- SEO H1 Header hidden or visually styled -->
+                <section class="relative bg-gradient-to-b from-emerald-900 via-teal-900 to-slate-900 text-white overflow-hidden py-16 lg:py-24">
+                    <!-- Background ambient lights -->
+                    <div class="absolute -top-40 -left-40 w-96 h-96 bg-emerald-500/20 rounded-full filter blur-3xl pointer-events-none"></div>
+                    <div class="absolute top-1/2 -right-40 w-96 h-96 bg-sky-500/20 rounded-full filter blur-3xl pointer-events-none"></div>
+
+                    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+                        <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+                            
+                            <!-- Hero Text Content -->
+                            <div class="space-y-6 text-center lg:text-left">
+                                <div class="inline-flex items-center gap-2 bg-emerald-500/20 border border-emerald-400/30 px-4 py-1.5 rounded-full text-emerald-300 text-xs font-semibold uppercase tracking-widest backdrop-blur-md">
+                                    <i class="fa-solid fa-leaf"></i> 100% Sustainable & Plastic-Free Store
+                                </div>
+                                <h1 class="text-4xl sm:text-5xl lg:text-6xl font-black leading-tight tracking-tight">
+                                    Switch to <span class="bg-gradient-to-r from-emerald-400 via-teal-300 to-sky-300 bg-clip-text text-transparent">Eco-Friendly</span> Everyday Essentials.
+                                </h1>
+                                <p class="text-slate-300 text-base sm:text-lg leading-relaxed max-w-xl mx-auto lg:mx-0">
+                                    Elevate your daily routine with handcrafted bamboo flasks, plantable seed stationery, organic tote bags, and reusable lunch boxes. Beautiful products that care for Earth.
+                                </p>
+                                
+                                <div class="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4 pt-2">
+                                    <button onclick="navigateTo('shop')" class="w-full sm:w-auto px-8 py-4 bg-gradient-to-r from-emerald-500 to-teal-500 hover:from-emerald-600 hover:to-teal-600 text-white font-bold rounded-2xl shadow-lg shadow-emerald-500/30 transition-all transform hover:-translate-y-0.5 text-base flex items-center justify-center gap-2">
+                                        Explore Green Store <i class="fa-solid fa-arrow-right"></i>
+                                    </button>
+                                    <button onclick="filterByCategory('Bamboo Products')" class="w-full sm:w-auto px-7 py-4 bg-white/10 hover:bg-white/20 text-white font-semibold rounded-2xl border border-white/20 backdrop-blur-md transition-all text-base flex items-center justify-center gap-2">
+                                        <i class="fa-solid fa-flask"></i> Bamboo Best Sellers
+                                    </button>
+                                </div>
+
+                                <!-- Trust Metric Badges -->
+                                <div class="pt-6 grid grid-cols-3 gap-4 border-t border-slate-800 text-center lg:text-left">
+                                    <div>
+                                        <span class="block text-2xl font-bold text-emerald-400">10k+</span>
+                                        <span class="text-xs text-slate-400">Happy Customers</span>
+                                    </div>
+                                    <div>
+                                        <span class="block text-2xl font-bold text-sky-400">50k+</span>
+                                        <span class="text-xs text-slate-400">Plastics Replaced</span>
+                                    </div>
+                                    <div>
+                                        <span class="block text-2xl font-bold text-teal-300">100%</span>
+                                        <span class="text-xs text-slate-400">Biodegradable</span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Floating Eco Products Showcase Canvas / Animated Elements -->
+                            <div class="relative flex items-center justify-center min-h-[420px] sm:min-h-[480px]">
+                                <!-- Glowing Aura Background -->
+                                <div class="w-80 h-80 rounded-full bg-gradient-to-tr from-emerald-500/30 via-teal-500/30 to-sky-500/20 absolute blur-2xl animate-glow"></div>
+
+                                <!-- Centerpiece Card 1: Bamboo Bottle -->
+                                <div class="absolute z-20 top-4 left-6 sm:left-12 bg-white/95 text-slate-800 p-4 rounded-3xl shadow-2xl border border-white/40 backdrop-blur-md w-60 animate-float-1 group hover:scale-105 transition-transform cursor-pointer" onclick="openProductDetail('eco-01')">
+                                    <div class="relative overflow-hidden rounded-2xl h-36 mb-3">
+                                        <img src="${PRODUCTS[0].image}" alt="Bamboo Bottle" class="w-full h-full object-cover">
+                                        <span class="absolute top-2 right-2 bg-emerald-600 text-white text-[10px] font-bold px-2 py-0.5 rounded-full">Top Pick</span>
+                                    </div>
+                                    <h4 class="font-bold text-xs truncate">Bamboo Thermos Bottle</h4>
+                                    <div class="flex items-center justify-between mt-1">
+                                        <span class="text-emerald-700 font-extrabold text-sm">₹799</span>
+                                        <span class="text-[10px] text-slate-500"><i class="fa-solid fa-star text-amber-400 mr-0.5"></i>4.9</span>
+                                    </div>
+                                </div>
+
+                                <!-- Floating Card 2: Reusable Canvas Bag -->
+                                <div class="absolute z-30 bottom-6 right-2 sm:right-8 bg-white/95 text-slate-800 p-4 rounded-3xl shadow-2xl border border-white/40 backdrop-blur-md w-56 animate-float-2 group hover:scale-105 transition-transform cursor-pointer" onclick="openProductDetail('eco-02')">
+                                    <div class="relative overflow-hidden rounded-2xl h-32 mb-3">
+                                        <img src="${PRODUCTS[1].image}" alt="Organic Tote Bag" class="w-full h-full object-cover">
+                                        <span class="absolute top-2 right-2 bg-sky-600 text-white text-[10px] font-bold px-2 py-0.5 rounded-full">Eco Canvas</span>
+                                    </div>
+                                    <h4 class="font-bold text-xs truncate">Organic Tote Bag</h4>
+                                    <div class="flex items-center justify-between mt-1">
+                                        <span class="text-emerald-700 font-extrabold text-sm">₹349</span>
+                                        <span class="text-[10px] text-slate-500"><i class="fa-solid fa-leaf text-emerald-500 mr-0.5"></i>Zero Waste</span>
+                                    </div>
+                                </div>
+
+                                <!-- Floating Card 3: Plantable Stationery -->
+                                <div class="absolute z-10 -bottom-2 left-4 sm:left-10 bg-gradient-to-tr from-emerald-600 to-teal-700 text-white p-3.5 rounded-2xl shadow-xl w-48 animate-float-3 cursor-pointer" onclick="openProductDetail('eco-03')">
+                                    <div class="flex items-center gap-3">
+                                        <div class="w-10 h-10 rounded-xl bg-white/20 flex items-center justify-center shrink-0">
+                                            <i class="fa-solid fa-seedling text-lg text-emerald-200"></i>
+                                        </div>
+                                        <div>
+                                            <p class="font-bold text-xs">Plantable Pencils</p>
+                                            <p class="text-[10px] text-emerald-100">Grows into Basil & Tomato!</p>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- Floating Badge Banner -->
+                                <div class="absolute -top-4 right-10 z-20 bg-emerald-500 text-white text-xs font-bold px-4 py-2 rounded-2xl shadow-lg border border-emerald-300/30 flex items-center gap-2 animate-pulse">
+                                    <i class="fa-solid fa-recycle"></i> 100% Plastic Free Shipping
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Product Category Showcase Grid -->
+                <section class="py-16 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                    <div class="text-center max-w-2xl mx-auto mb-12">
+                        <span class="text-emerald-600 font-bold text-xs uppercase tracking-widest bg-emerald-50 px-3 py-1 rounded-full">Curated Sustainable Living</span>
+                        <h2 class="text-3xl font-extrabold text-slate-900 mt-2">Browse Eco Categories</h2>
+                        <p class="text-slate-600 text-sm mt-2">Find thoughtfully designed products crafted from organic bamboo, recycled paper, cotton, and non-toxic materials.</p>
+                    </div>
+
+                    <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4 sm:gap-6">
+                        ${renderCategoryCard('Bamboo Products', 'Bamboo Bottles & Flasks', 'fa-vial-stem', 'from-emerald-500 to-teal-600', PRODUCTS[0].image)}
+                        ${renderCategoryCard('Bags & Tote', 'Reusable Tote Bags', 'fa-bag-shopping', 'from-sky-500 to-blue-600', PRODUCTS[1].image)}
+                        ${renderCategoryCard('Plantable Stationery', 'Plantable Stationery', 'fa-pen-ruler', 'from-teal-500 to-emerald-600', PRODUCTS[2].image)}
+                        ${renderCategoryCard('Eco Notebooks', 'Recycled Eco Notebooks', 'fa-book-open', 'from-emerald-600 to-sky-600', PRODUCTS[3].image)}
+                        ${renderCategoryCard('Reusable Lunch Boxes', 'Eco Lunch Boxes', 'fa-utensils', 'from-blue-600 to-teal-600', PRODUCTS[4].image)}
+                    </div>
+                </section>
+
+                <!-- Featured Products Grid -->
+                <section class="py-12 bg-slate-100/60 border-y border-slate-200/80">
+                    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                        <div class="flex flex-col sm:flex-row sm:items-end justify-between mb-10 gap-4">
+                            <div>
+                                <span class="text-sky-600 font-bold text-xs uppercase tracking-widest bg-sky-50 px-3 py-1 rounded-full">Eco Favorites</span>
+                                <h2 class="text-2xl sm:text-3xl font-extrabold text-slate-900 mt-2">Trending Sustainable Essentials</h2>
+                            </div>
+                            <button onclick="navigateTo('shop')" class="text-emerald-700 font-bold text-sm hover:text-emerald-800 flex items-center gap-1 group">
+                                View Entire Store <i class="fa-solid fa-arrow-right text-xs group-hover:translate-x-1 transition-transform"></i>
+                            </button>
+                        </div>
+
+                        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+                            ${trendingProducts.map(p => renderProductCard(p)).join('')}
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Plastic Footprint Calculator Banner -->
+                <section class="py-16 bg-gradient-to-r from-emerald-800 via-teal-800 to-sky-900 text-white my-12 rounded-3xl mx-4 sm:mx-8 max-w-7xl lg:mx-auto px-6 sm:px-12 relative overflow-hidden shadow-2xl">
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-8 items-center">
+                        <div class="md:col-span-2 space-y-4">
+                            <span class="bg-emerald-500/30 text-emerald-200 text-xs font-bold px-3 py-1 rounded-full uppercase">Your Impact Matters</span>
+                            <h3 class="text-2xl sm:text-4xl font-extrabold">Calculate Your Plastic Reduction</h3>
+                            <p class="text-slate-300 text-sm leading-relaxed">
+                                Replacing 1 single plastic bottle with a bamboo flask saves over 150 single-use plastic bottles annually. Join thousands of conscious shoppers in restoring our oceans!
+                            </p>
+                        </div>
+                        <div class="bg-white/10 p-6 rounded-2xl border border-white/20 backdrop-blur-md text-center space-y-3">
+                            <p class="text-xs uppercase text-emerald-200 font-semibold">Average Annual Impact</p>
+                            <span class="text-4xl font-black text-white block">360+</span>
+                            <p class="text-xs text-slate-300">Single-use plastic items eliminated per family!</p>
+                            <button onclick="navigateTo('shop')" class="w-full py-2.5 bg-emerald-500 hover:bg-emerald-600 text-white font-bold rounded-xl text-xs transition-colors">Start Shopping Plastic-Free</button>
+                        </div>
+                    </div>
+                </section>
+            `;
+        }
+
+        /* Helper Component for Category Card */
+        function renderCategoryCard(catName, displayName, icon, gradient, bgImg) {
+            return `
+                <div onclick="filterByCategory('${catName}')" class="group relative rounded-3xl overflow-hidden cursor-pointer shadow-md hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1 h-56 flex flex-col justify-end p-5">
+                    <img src="${bgImg}" alt="${displayName}" class="absolute inset-0 w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
+                    <div class="absolute inset-0 bg-gradient-to-t from-slate-900/90 via-slate-900/40 to-transparent"></div>
+                    <div class="relative z-10 text-white">
+                        <div class="w-10 h-10 rounded-2xl bg-gradient-to-tr ${gradient} flex items-center justify-center text-white mb-2 shadow-md">
+                            <i class="fa-solid ${icon}"></i>
+                        </div>
+                        <h3 class="font-bold text-sm group-hover:text-emerald-300 transition-colors">${displayName}</h3>
+                        <p class="text-[11px] text-slate-300 mt-0.5">Explore Range <i class="fa-solid fa-chevron-right text-[9px] ml-0.5"></i></p>
+                    </div>
+                </div>
+            `;
+        }
+
+        function renderProductCard(product) {
+            const isWishlisted = wishlist.includes(product.id);
+
+            return `
+                <div class="bg-white rounded-3xl overflow-hidden border border-slate-200/80 shadow-xs hover:shadow-xl transition-all duration-300 flex flex-col group">
+                    <!-- Image Box -->
+                    <div class="relative overflow-hidden bg-slate-100 aspect-square cursor-pointer" onclick="openProductDetail('${product.id}')">
+                        <img src="${product.image}" alt="${product.name}" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                        
+                        <!-- Badge -->
+                        ${product.badge ? `<span class="absolute top-3 left-3 bg-gradient-to-r from-emerald-600 to-teal-600 text-white text-[10px] font-bold px-2.5 py-1 rounded-full shadow-sm">${product.badge}</span>` : ''}
+
+                        <!-- Wishlist Toggle -->
+                        <button onclick="event.stopPropagation(); toggleWishlist('${product.id}')" class="absolute top-3 right-3 w-8 h-8 rounded-full bg-white/80 hover:bg-white text-slate-700 flex items-center justify-center shadow-md transition-colors">
+                            <i class="${isWishlisted ? 'fa-solid text-rose-500' : 'fa-regular'} fa-heart text-sm"></i>
+                        </button>
+
+                        <!-- Eco Impact Tag -->
+                        <div class="absolute bottom-3 left-3 bg-slate-900/80 backdrop-blur-xs text-emerald-300 text-[10px] font-semibold px-2.5 py-0.5 rounded-full flex items-center gap-1">
+                            <i class="fa-solid fa-leaf text-emerald-400"></i> Saves ${product.ecoPoints} Plastics
+                        </div>
+                    </div>
+
+                    <!-- Details Body -->
+                    <div class="p-5 flex flex-col flex-grow justify-between space-y-3">
+                        <div>
+                            <span class="text-[11px] font-semibold uppercase tracking-wider text-emerald-600">${product.category}</span>
+                            <h3 onclick="openProductDetail('${product.id}')" class="font-bold text-slate-800 text-sm mt-1 line-clamp-2 hover:text-emerald-600 cursor-pointer transition-colors">${product.name}</h3>
+                            
+                            <!-- Rating -->
+                            <div class="flex items-center gap-1 mt-2 text-xs text-slate-500">
+                                <div class="flex text-amber-400">
+                                    <i class="fa-solid fa-star"></i>
+                                </div>
+                                <span class="font-bold text-slate-700">${product.rating}</span>
+                                <span>(${product.reviewsCount})</span>
+                            </div>
+                        </div>
+
+                        <!-- Pricing & Action Button -->
+                        <div class="pt-2 border-t border-slate-100 flex items-center justify-between">
+                            <div>
+                                <span class="text-lg font-extrabold text-slate-900">₹${product.price}</span>
+                                <span class="text-xs text-slate-400 line-through ml-1">₹${product.originalPrice}</span>
+                            </div>
+                            
+                            <button onclick="addToCart('${product.id}', 1)" class="px-3.5 py-2 bg-emerald-50 hover:bg-emerald-600 text-emerald-700 hover:text-white font-bold text-xs rounded-xl transition-all flex items-center gap-1.5 shadow-xs">
+                                <i class="fa-solid fa-plus text-xs"></i> Add
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            `;
+        }
+
+        function renderShopPage() {
+            let filtered = PRODUCTS.filter(p => {
+                const matchesCat = currentFilterCategory === 'All' || p.category === currentFilterCategory;
+                const matchesSearch = p.name.toLowerCase().includes(searchQuery.toLowerCase()) || p.description.toLowerCase().includes(searchQuery.toLowerCase());
+                const matchesPrice = p.price <= priceFilterMax;
+                return matchesCat && matchesSearch && matchesPrice;
+            });
+
+            // Sorting logic
+            if (selectedSort === 'price-low') {
+                filtered.sort((a, b) => a.price - b.price);
+            } else if (selectedSort === 'price-high') {
+                filtered.sort((a, b) => b.price - a.price);
+            } else if (selectedSort === 'rating') {
+                filtered.sort((a, b) => b.rating - a.rating);
+            }
+
+            const categoriesList = ['All', 'Bamboo Products', 'Bags & Tote', 'Plantable Stationery', 'Eco Notebooks', 'Reusable Lunch Boxes'];
+
+            return `
+                <div class="bg-slate-50 min-h-screen py-10">
+                    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                        
+                        <!-- Header Banner -->
+                        <div class="bg-gradient-to-r from-teal-700 via-emerald-700 to-sky-700 rounded-3xl p-8 text-white mb-8 shadow-lg">
+                            <h1 class="text-3xl font-extrabold">Shop Sustainable Eco Products</h1>
+                            <p class="text-slate-200 text-sm mt-1">Discover zero-waste, plastic-free alternatives for school, office, travel and kitchen.</p>
+                        </div>
+
+                        <div class="grid grid-cols-1 lg:grid-cols-4 gap-8">
+                            
+                            <!-- Sidebar Filters -->
+                            <div class="bg-white p-6 rounded-3xl border border-slate-200 shadow-xs h-fit space-y-6">
+                                <div class="flex items-center justify-between border-b border-slate-100 pb-4">
+                                    <h3 class="font-bold text-slate-800 text-base flex items-center gap-2"><i class="fa-solid fa-sliders text-emerald-600"></i> Filters</h3>
+                                    <button onclick="resetFilters()" class="text-xs font-semibold text-emerald-600 hover:underline">Reset All</button>
+                                </div>
+
+                                <!-- Category Filter -->
+                                <div>
+                                    <h4 class="font-semibold text-xs text-slate-500 uppercase tracking-wider mb-3">Categories</h4>
+                                    <div class="space-y-1.5">
+                                        ${categoriesList.map(cat => `
+                                            <button onclick="filterByCategory('${cat}')" class="w-full text-left px-3 py-2 rounded-xl text-sm flex items-center justify-between transition-colors ${currentFilterCategory === cat ? 'bg-emerald-600 text-white font-bold' : 'text-slate-600 hover:bg-slate-100'}">
+                                                <span>${cat}</span>
+                                                <span class="text-xs opacity-75">${cat === 'All' ? PRODUCTS.length : PRODUCTS.filter(p=>p.category===cat).length}</span>
+                                            </button>
+                                        `).join('')}
+                                    </div>
+                                </div>
+
+                                <!-- Price Filter Slider -->
+                                <div>
+                                    <div class="flex justify-between items-center mb-2">
+                                        <h4 class="font-semibold text-xs text-slate-500 uppercase tracking-wider">Max Price</h4>
+                                        <span class="font-bold text-emerald-700 text-sm">₹${priceFilterMax}</span>
+                                    </div>
+                                    <input type="range" min="200" max="2000" step="50" value="${priceFilterMax}" oninput="handlePriceFilter(this.value)" class="w-full accent-emerald-600 cursor-pointer">
+                                </div>
+                            </div>
+
+                            <!-- Products Grid Main Column -->
+                            <div class="lg:col-span-3 space-y-6">
+                                
+                                <!-- Search & Sort Bar -->
+                                <div class="bg-white p-4 rounded-2xl border border-slate-200 shadow-xs flex flex-col sm:flex-row items-center justify-between gap-4">
+                                    <div class="relative w-full sm:w-72">
+                                        <input type="text" value="${searchQuery}" oninput="handleSearchInput(this.value)" placeholder="Search products..." class="w-full bg-slate-100 border border-slate-200 text-xs py-2.5 pl-9 pr-4 rounded-xl focus:outline-none focus:border-emerald-500">
+                                        <i class="fa-solid fa-search absolute left-3 top-3 text-slate-400 text-xs"></i>
+                                    </div>
+
+                                    <div class="flex items-center gap-2 w-full sm:w-auto justify-end">
+                                        <span class="text-xs text-slate-500 font-medium">Sort By:</span>
+                                        <select onchange="handleSortChange(this.value)" class="bg-slate-100 border border-slate-200 text-xs py-2 px-3 rounded-xl font-semibold text-slate-700 focus:outline-none">
+                                            <option value="featured" ${selectedSort==='featured'?'selected':''}>Featured</option>
+                                            <option value="price-low" ${selectedSort==='price-low'?'selected':''}>Price: Low to High</option>
+                                            <option value="price-high" ${selectedSort==='price-high'?'selected':''}>Price: High to Low</option>
+                                            <option value="rating" ${selectedSort==='rating'?'selected':''}>Top Rated</option>
+                                        </select>
+                                    </div>
+                                </div>
+
+                                <!-- Products Output Grid -->
+                                ${filtered.length > 0 ? `
+                                    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+                                        ${filtered.map(p => renderProductCard(p)).join('')}
+                                    </div>
+                                ` : `
+                                    <div class="bg-white rounded-3xl p-12 text-center border border-slate-200 space-y-4">
+                                        <div class="w-16 h-16 bg-slate-100 text-slate-400 rounded-full flex items-center justify-center mx-auto text-2xl">
+                                            <i class="fa-solid fa-box-open"></i>
+                                        </div>
+                                        <h3 class="font-bold text-lg text-slate-800">No Products Found</h3>
+                                        <p class="text-sm text-slate-500 max-w-sm mx-auto">Try adjusting your filters, price slider, or search term to discover eco products.</p>
+                                        <button onclick="resetFilters()" class="px-5 py-2.5 bg-emerald-600 text-white font-bold rounded-xl text-xs hover:bg-emerald-700 transition-colors">Reset All Filters</button>
+                                    </div>
+                                `}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            `;
+        }
+
+        function openProductDetail(productId) {
+            const product = PRODUCTS.find(p => p.id === productId);
+            if (!product) return;
+
+            activeProductId = productId;
+            window.location.hash = `product/${productId}`;
+            
+            const app = document.getElementById('app-container');
+            app.innerHTML = `
+                <div class="bg-slate-50 min-h-screen py-10">
+                    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+                        
+                        <!-- Back Breadcrumb -->
+                        <div class="mb-6 flex items-center gap-2 text-xs font-medium text-slate-500">
+                            <button onclick="navigateTo('shop')" class="hover:text-emerald-600"><i class="fa-solid fa-arrow-left mr-1"></i> Back to Shop</button>
+                            <span>/</span>
+                            <span class="text-slate-800 font-semibold">${product.name}</span>
+                        </div>
+
+                        <!-- Product Showcase Grid -->
+                        <div class="bg-white rounded-3xl border border-slate-200 shadow-lg overflow-hidden grid grid-cols-1 md:grid-cols-2 gap-8 p-6 sm:p-10">
+                            
+                            <!-- Left: Image Box -->
+                            <div class="space-y-4">
+                                <div class="aspect-square rounded-2xl bg-slate-100 overflow-hidden relative border border-slate-100 shadow-inner">
+                                    <img id="detail-main-img" src="${product.image}" alt="${product.name}" class="w-full h-full object-cover">
+                                    <span class="absolute top-4 left-4 bg-emerald-600 text-white text-xs font-bold px-3 py-1 rounded-full shadow-md">${product.badge || 'Eco Pick'}</span>
+                                </div>
+                            </div>
+
+                            <!-- Right: Detailed Specifications & Add to Cart -->
+                            <div class="space-y-6 flex flex-col justify-between">
+                                <div>
+                                    <span class="text-xs font-bold text-emerald-600 uppercase tracking-widest">${product.category}</span>
+                                    <h1 class="text-2xl sm:text-3xl font-black text-slate-900 mt-1">${product.name}</h1>
+                                    
+                                    <!-- Rating -->
+                                    <div class="flex items-center gap-2 mt-3">
+                                        <div class="flex text-amber-400 text-sm">
+                                            <i class="fa-solid fa-star"></i>
+                                            <i class="fa-solid fa-star"></i>
+                                            <i class="fa-solid fa-star"></i>
+                                            <i class="fa-solid fa-star"></i>
+                                            <i class="fa-solid fa-star"></i>
+                                        </div>
+                                        <span class="font-bold text-slate-800 text-sm">${product.rating}</span>
+                                        <span class="text-xs text-slate-400">(${product.reviewsCount} customer reviews)</span>
+                                    </div>
+
+                                    <!-- Price tag -->
+                                    <div class="mt-4 flex items-baseline gap-3">
+                                        <span class="text-3xl font-black text-emerald-700">₹${product.price}</span>
+                                        <span class="text-sm text-slate-400 line-through">₹${product.originalPrice}</span>
+                                        <span class="text-xs font-bold text-rose-500 bg-rose-50 px-2.5 py-1 rounded-full">Save ${Math.round(((product.originalPrice - product.price)/product.originalPrice)*100)}%</span>
+                                    </div>
+
+                                    <p class="text-slate-600 text-sm leading-relaxed mt-4">
+                                        ${product.description}
+                                    </p>
+
+                                    <!-- Specifications Bullet List -->
+                                    <div class="mt-6 bg-slate-50 p-4 rounded-2xl border border-slate-200">
+                                        <h4 class="font-bold text-xs uppercase tracking-wider text-slate-700 mb-2">Key Highlights</h4>
+                                        <ul class="grid grid-cols-1 sm:grid-cols-2 gap-2 text-xs text-slate-600">
+                                            ${product.specs.map(spec => `<li class="flex items-center gap-1.5"><i class="fa-solid fa-circle-check text-emerald-500"></i> ${spec}</li>`).join('')}
+                                        </ul>
+                                    </div>
+                                </div>
+
+                                <!-- Quantity Selector & Add to Cart -->
+                                <div class="pt-6 border-t border-slate-200 space-y-4">
+                                    <div class="flex items-center gap-4">
+                                        <label class="text-xs font-bold text-slate-700 uppercase">Quantity:</label>
+                                        <div class="flex items-center bg-slate-100 rounded-xl border border-slate-200 p-1">
+                                            <button onclick="adjustDetailQty(-1)" class="w-8 h-8 rounded-lg bg-white hover:bg-slate-200 font-bold text-slate-700 flex items-center justify-center transition-colors">-</button>
+                                            <span id="detail-qty-val" class="w-10 text-center font-bold text-slate-800 text-sm">1</span>
+                                            <button onclick="adjustDetailQty(1)" class="w-8 h-8 rounded-lg bg-white hover:bg-slate-200 font-bold text-slate-700 flex items-center justify-center transition-colors">+</button>
+                                        </div>
+                                    </div>
+
+                                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                                        <button onclick="addActiveProductToCart()" class="py-3.5 px-6 bg-gradient-to-r from-emerald-600 to-teal-600 hover:from-emerald-700 hover:to-teal-700 text-white font-bold rounded-2xl shadow-md shadow-emerald-600/20 text-sm flex items-center justify-center gap-2 transition-all">
+                                            <i class="fa-solid fa-cart-plus"></i> Add to Cart
+                                        </button>
+                                        <button onclick="buyNowActiveProduct()" class="py-3.5 px-6 bg-slate-900 hover:bg-slate-800 text-white font-bold rounded-2xl text-sm flex items-center justify-center gap-2 transition-all">
+                                            Buy Now
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            `;
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        let detailQty = 1;
+        function adjustDetailQty(amount) {
+            detailQty = Math.max(1, detailQty + amount);
+            const el = document.getElementById('detail-qty-val');
+            if (el) el.innerText = detailQty;
+        }
+
+        function addActiveProductToCart() {
+            if (activeProductId) {
+                addToCart(activeProductId, detailQty);
+                detailQty = 1;
+            }
+        }
+
+        function buyNowActiveProduct() {
+            if (activeProductId) {
+                addToCart(activeProductId, detailQty);
+                detailQty = 1;
+                navigateTo('checkout');
+            }
+        }
+
+        function addToCart(productId, qty = 1) {
+            const product = PRODUCTS.find(p => p.id === productId);
+            if (!product) return;
+
+            const existingIndex = cart.findIndex(item => item.product.id === productId);
+            if (existingIndex > -1) {
+                cart[existingIndex].quantity += qty;
+            } else {
+                cart.push({ product, quantity: qty });
+            }
+
+            saveCart();
+            showToast(`Added ${product.name.slice(0, 25)}... to cart!`, 'success');
+            renderCartDrawerItems();
+        }
+
+        function updateCartQty(productId, delta) {
+            const index = cart.findIndex(item => item.product.id === productId);
+            if (index > -1) {
+                cart[index].quantity += delta;
+                if (cart[index].quantity <= 0) {
+                    cart.splice(index, 1);
+                }
+                saveCart();
+                renderCartDrawerItems();
+                if (activePage === 'cart') {
+                    document.getElementById('app-container').innerHTML = renderFullCartPage();
+                }
+            }
+        }
+
+        function removeFromCart(productId) {
+            cart = cart.filter(item => item.product.id !== productId);
+            saveCart();
+            renderCartDrawerItems();
+            if (activePage === 'cart') {
+                document.getElementById('app-container').innerHTML = renderFullCartPage();
+            }
+            showToast('Item removed from cart', 'info');
+        }
+
+        function saveCart() {
+            localStorage.setItem('ecosphere_cart', JSON.stringify(cart));
+            updateCartBadge();
+        }
+
+        function updateCartBadge() {
+            const totalItems = cart.reduce((sum, item) => sum + item.quantity, 0);
+            const badge = document.getElementById('cart-count-badge');
+            if (badge) badge.innerText = totalItems;
+        }
+
+        function renderCartDrawerItems() {
+            const container = document.getElementById('cart-drawer-items');
+            if (!container) return;
+
+            if (cart.length === 0) {
+                container.innerHTML = `
+                    <div class="text-center py-12 space-y-3">
+                        <div class="w-16 h-16 bg-emerald-50 text-emerald-600 rounded-full flex items-center justify-center mx-auto text-2xl">
+                            <i class="fa-solid fa-basket-shopping"></i>
+                        </div>
+                        <p class="font-bold text-slate-800">Your Cart is Empty</p>
+                        <p class="text-xs text-slate-500">Explore our eco store to add bamboo flasks, bags, and plantable stationery!</p>
+                    </div>
+                `;
+            } else {
+                container.innerHTML = cart.map(item => `
+                    <div class="flex items-center gap-3 bg-slate-50 p-3 rounded-2xl border border-slate-200/80">
+                        <img src="${item.product.image}" alt="${item.product.name}" class="w-16 h-16 object-cover rounded-xl bg-white shrink-0">
+                        <div class="flex-grow min-w-0">
+                            <h4 class="font-bold text-xs text-slate-800 truncate">${item.product.name}</h4>
+                            <p class="text-xs font-extrabold text-emerald-700 mt-0.5">₹${item.product.price}</p>
+                            
+                            <!-- Qty Controls -->
+                            <div class="flex items-center gap-2 mt-1">
+                                <button onclick="updateCartQty('${item.product.id}', -1)" class="w-5 h-5 rounded bg-white border text-xs font-bold text-slate-600">-</button>
+                                <span class="text-xs font-bold text-slate-800">${item.quantity}</span>
+                                <button onclick="updateCartQty('${item.product.id}', 1)" class="w-5 h-5 rounded bg-white border text-xs font-bold text-slate-600">+</button>
+                            </div>
+                        </div>
+                        <button onclick="removeFromCart('${item.product.id}')" class="text-slate-400 hover:text-rose-500 p-1 transition-colors">
+                            <i class="fa-solid fa-trash-can text-sm"></i>
+                        </button>
+                    </div>
+                `).join('');
+            }
+
+            // Calculations
+            const subtotal = cart.reduce((sum, item) => sum + (item.product.price * item.quantity), 0);
+            const totalEco = cart.reduce((sum, item) => sum + (item.product.ecoPoints * item.quantity), 0);
+
+            document.getElementById('cart-drawer-subtotal').innerText = `₹${subtotal}`;
+            document.getElementById('cart-drawer-eco-impact').innerText = `${totalEco} Items Replaced`;
+            document.getElementById('cart-drawer-total').innerText = `₹${subtotal}`;
+        }
+
+        function toggleCartDrawer() {
+            const drawer = document.getElementById('cart-drawer');
+            const overlay = document.getElementById('cart-drawer-overlay');
+            if (drawer.classList.contains('translate-x-full')) {
+                renderCartDrawerItems();
+                drawer.classList.remove('translate-x-full');
+                overlay.classList.remove('hidden');
+            } else {
+                drawer.classList.add('translate-x-full');
+                overlay.classList.add('hidden');
+            }
+        }
+
+        function renderFullCartPage() {
+            const subtotal = cart.reduce((sum, item) => sum + (item.product.price * item.quantity), 0);
+            const shipping = subtotal > 499 || subtotal === 0 ? 0 : 50;
+            const total = subtotal + shipping;
+
+            return `
+                <div class="bg-slate-50 min-h-screen py-10">
+                    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+                        <h1 class="text-2xl sm:text-3xl font-extrabold text-slate-900 mb-6">Shopping Cart & Eco Summary</h1>
+
+                        ${cart.length === 0 ? `
+                            <div class="bg-white rounded-3xl p-12 text-center border border-slate-200 space-y-4">
+                                <i class="fa-solid fa-basket-shopping text-4xl text-slate-300"></i>
+                                <h3 class="font-bold text-lg text-slate-800">Your Cart is Empty</h3>
+                                <button onclick="navigateTo('shop')" class="px-6 py-3 bg-emerald-600 text-white font-bold rounded-xl text-xs hover:bg-emerald-700 transition-colors">Browse Eco Store</button>
+                            </div>
+                        ` : `
+                            <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+                                
+                                <!-- Cart Items List Column -->
+                                <div class="lg:col-span-2 space-y-4">
+                                    ${cart.map(item => `
+                                        <div class="bg-white p-4 sm:p-6 rounded-3xl border border-slate-200 shadow-xs flex flex-col sm:flex-row items-center gap-4">
+                                            <img src="${item.product.image}" alt="${item.product.name}" class="w-24 h-24 object-cover rounded-2xl bg-slate-100">
+                                            <div class="flex-grow min-w-0 text-center sm:text-left">
+                                                <span class="text-[10px] uppercase font-bold text-emerald-600">${item.product.category}</span>
+                                                <h3 class="font-bold text-slate-800 text-sm truncate">${item.product.name}</h3>
+                                                <p class="text-emerald-700 font-extrabold text-sm mt-1">₹${item.product.price}</p>
+                                            </div>
+
+                                            <div class="flex items-center gap-6">
+                                                <!-- Qty control -->
+                                                <div class="flex items-center bg-slate-100 rounded-xl p-1 border">
+                                                    <button onclick="updateCartQty('${item.product.id}', -1)" class="w-7 h-7 rounded bg-white text-xs font-bold">-</button>
+                                                    <span class="w-8 text-center font-bold text-xs">${item.quantity}</span>
+                                                    <button onclick="updateCartQty('${item.product.id}', 1)" class="w-7 h-7 rounded bg-white text-xs font-bold">+</button>
+                                                </div>
+
+                                                <span class="font-black text-slate-900 text-sm w-16 text-right">₹${item.product.price * item.quantity}</span>
+
+                                                <button onclick="removeFromCart('${item.product.id}')" class="text-slate-400 hover:text-rose-500">
+                                                    <i class="fa-solid fa-trash-can"></i>
+                                                </button>
+                                            </div>
+                                        </div>
+                                    `).join('')}
+                                </div>
+
+                                <!-- Summary Sidebar -->
+                                <div class="bg-white p-6 rounded-3xl border border-slate-200 shadow-xs h-fit space-y-4">
+                                    <h3 class="font-bold text-base text-slate-800 border-b pb-3">Order Summary</h3>
+                                    <div class="flex justify-between text-xs text-slate-600">
+                                        <span>Subtotal</span>
+                                        <span class="font-bold text-slate-800">₹${subtotal}</span>
+                                    </div>
+                                    <div class="flex justify-between text-xs text-slate-600">
+                                        <span>Green Eco Shipping</span>
+                                        <span class="font-bold ${shipping === 0 ? 'text-emerald-600' : 'text-slate-800'}">${shipping === 0 ? 'FREE' : '₹50'}</span>
+                                    </div>
+                                    <div class="pt-3 border-t flex justify-between font-black text-lg text-slate-900">
+                                        <span>Total Amount</span>
+                                        <span class="text-emerald-700">₹${total}</span>
+                                    </div>
+
+                                    <button onclick="navigateTo('checkout')" class="w-full py-3.5 bg-gradient-to-r from-emerald-600 to-sky-600 text-white font-bold rounded-2xl text-sm transition-all shadow-md shadow-emerald-600/20 text-center">
+                                        Proceed to Checkout
+                                    </button>
+                                </div>
+                            </div>
+                        `}
+                    </div>
+                </div>
+            `;
+        }
+
+        function renderCheckoutPage() {
+            const subtotal = cart.reduce((sum, item) => sum + (item.product.price * item.quantity), 0);
+            const shipping = subtotal > 499 || subtotal === 0 ? 0 : 50;
+            const total = subtotal + shipping;
+
+            if (cart.length === 0) {
+                return `
+                    <div class="p-12 text-center max-w-md mx-auto my-12 bg-white rounded-3xl border">
+                        <p class="font-bold text-slate-800 mb-4">Your cart is empty. Add items to checkout!</p>
+                        <button onclick="navigateTo('shop')" class="px-5 py-2.5 bg-emerald-600 text-white rounded-xl text-xs font-bold">Go to Shop</button>
+                    </div>
+                `;
+            }
+
+            return `
+                <div class="bg-slate-50 min-h-screen py-10">
+                    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+                        <h1 class="text-2xl sm:text-3xl font-extrabold text-slate-900 mb-6">Checkout & Payment</h1>
+
+                        <form onsubmit="handlePlaceOrder(event)" class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+                            
+                            <!-- Left 2 Columns: Shipping Address & Payment Selection -->
+                            <div class="lg:col-span-2 space-y-6">
+                                
+                                <!-- Step 1: Customer Shipping Details -->
+                                <div class="bg-white p-6 sm:p-8 rounded-3xl border border-slate-200 shadow-xs space-y-4">
+                                    <h3 class="font-bold text-lg text-slate-800 flex items-center gap-2 border-b pb-3">
+                                        <span class="w-7 h-7 rounded-full bg-emerald-600 text-white text-xs flex items-center justify-center">1</span>
+                                        Shipping & Delivery Address
+                                    </h3>
+
+                                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                                        <div>
+                                            <label class="block text-xs font-bold text-slate-700 mb-1">Full Name *</label>
+                                            <input type="text" id="cust-name" required placeholder="e.g. Rahul Sharma" class="w-full bg-slate-50 border border-slate-200 text-xs p-3 rounded-xl focus:outline-none focus:border-emerald-500">
+                                        </div>
+                                        <div>
+                                            <label class="block text-xs font-bold text-slate-700 mb-1">Phone Number *</label>
+                                            <input type="tel" id="cust-phone" required placeholder="e.g. 9876543210" class="w-full bg-slate-50 border border-slate-200 text-xs p-3 rounded-xl focus:outline-none focus:border-emerald-500">
+                                        </div>
+                                        <div class="sm:col-span-2">
+                                            <label class="block text-xs font-bold text-slate-700 mb-1">Email Address *</label>
+                                            <input type="email" id="cust-email" required placeholder="e.g. rahul@example.com" class="w-full bg-slate-50 border border-slate-200 text-xs p-3 rounded-xl focus:outline-none focus:border-emerald-500">
+                                        </div>
+                                        <div class="sm:col-span-2">
+                                            <label class="block text-xs font-bold text-slate-700 mb-1">Street Address *</label>
+                                            <input type="text" id="cust-address" required placeholder="House No, Apartment, Street" class="w-full bg-slate-50 border border-slate-200 text-xs p-3 rounded-xl focus:outline-none focus:border-emerald-500">
+                                        </div>
+                                        <div>
+                                            <label class="block text-xs font-bold text-slate-700 mb-1">City *</label>
+                                            <input type="text" id="cust-city" required placeholder="e.g. Mumbai" class="w-full bg-slate-50 border border-slate-200 text-xs p-3 rounded-xl focus:outline-none focus:border-emerald-500">
+                                        </div>
+                                        <div>
+                                            <label class="block text-xs font-bold text-slate-700 mb-1">PIN Code *</label>
+                                            <input type="text" id="cust-pincode" required placeholder="e.g. 400001" class="w-full bg-slate-50 border border-slate-200 text-xs p-3 rounded-xl focus:outline-none focus:border-emerald-500">
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- Step 2: Payment Options (UPI / COD / Paytm / Card) -->
+                                <div class="bg-white p-6 sm:p-8 rounded-3xl border border-slate-200 shadow-xs space-y-4">
+                                    <h3 class="font-bold text-lg text-slate-800 flex items-center gap-2 border-b pb-3">
+                                        <span class="w-7 h-7 rounded-full bg-sky-600 text-white text-xs flex items-center justify-center">2</span>
+                                        Payment Method
+                                    </h3>
+
+                                    <div class="grid grid-cols-1 sm:grid-cols-3 gap-3">
+                                        <label class="p-4 border-2 border-emerald-500 bg-emerald-50/50 rounded-2xl cursor-pointer flex flex-col items-center justify-center text-center space-y-2">
+                                            <input type="radio" name="payment-method" value="UPI" checked class="accent-emerald-600">
+                                            <i class="fa-solid fa-qrcode text-emerald-600 text-xl"></i>
+                                            <span class="font-bold text-xs text-slate-800">UPI / QR Code</span>
+                                            <span class="text-[10px] text-slate-500">GPay, PhonePe, Paytm</span>
+                                        </label>
+
+                                        <label class="p-4 border-2 border-slate-200 hover:border-slate-300 rounded-2xl cursor-pointer flex flex-col items-center justify-center text-center space-y-2">
+                                            <input type="radio" name="payment-method" value="COD" class="accent-emerald-600">
+                                            <i class="fa-solid fa-money-bill-wave text-teal-600 text-xl"></i>
+                                            <span class="font-bold text-xs text-slate-800">Cash on Delivery</span>
+                                            <span class="text-[10px] text-slate-500">Pay at doorstep</span>
+                                        </label>
+
+                                        <label class="p-4 border-2 border-slate-200 hover:border-slate-300 rounded-2xl cursor-pointer flex flex-col items-center justify-center text-center space-y-2">
+                                            <input type="radio" name="payment-method" value="CARD" class="accent-emerald-600">
+                                            <i class="fa-solid fa-credit-card text-sky-600 text-xl"></i>
+                                            <span class="font-bold text-xs text-slate-800">Credit / Debit Card</span>
+                                            <span class="text-[10px] text-slate-500">Visa, Mastercard</span>
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Right Column: Order Summary & Place Order -->
+                            <div class="bg-white p-6 rounded-3xl border border-slate-200 shadow-xs h-fit space-y-4">
+                                <h3 class="font-bold text-base text-slate-800 border-b pb-3">Items in Order (${cart.length})</h3>
+                                
+                                <div class="max-h-60 overflow-y-auto space-y-3 pr-1">
+                                    ${cart.map(item => `
+                                        <div class="flex items-center justify-between text-xs">
+                                            <div class="flex items-center gap-2">
+                                                <span class="font-bold bg-slate-100 px-2 py-1 rounded text-slate-700">${item.quantity}x</span>
+                                                <span class="text-slate-800 font-medium truncate max-w-[140px]">${item.product.name}</span>
+                                            </div>
+                                            <span class="font-bold text-slate-900">₹${item.product.price * item.quantity}</span>
+                                        </div>
+                                    `).join('')}
+                                </div>
+
+                                <div class="border-t pt-3 space-y-2 text-xs">
+                                    <div class="flex justify-between text-slate-600">
+                                        <span>Subtotal</span>
+                                        <span class="font-bold text-slate-800">₹${subtotal}</span>
+                                    </div>
+                                    <div class="flex justify-between text-slate-600">
+                                        <span>Shipping</span>
+                                        <span class="font-bold text-emerald-600">${shipping === 0 ? 'FREE' : '₹50'}</span>
+                                    </div>
+                                    <div class="flex justify-between font-black text-base text-slate-900 pt-2 border-t">
+                                        <span>Grand Total</span>
+                                        <span class="text-emerald-700">₹${total}</span>
+                                    </div>
+                                </div>
+
+                                <button type="submit" class="w-full py-4 bg-gradient-to-r from-emerald-600 to-teal-600 hover:from-emerald-700 hover:to-teal-700 text-white font-black rounded-2xl text-sm transition-all shadow-lg shadow-emerald-600/30">
+                                    Confirm Order & Pay ₹${total}
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            `;
+        }
+
+        let lastOrderDetails = null;
+
+        function handlePlaceOrder(e) {
+            e.preventDefault();
+
+            const name = document.getElementById('cust-name').value;
+            const phone = document.getElementById('cust-phone').value;
+            const email = document.getElementById('cust-email').value;
+            const address = document.getElementById('cust-address').value;
+            const city = document.getElementById('cust-city').value;
+            const pincode = document.getElementById('cust-pincode').value;
+
+            const paymentMethod = document.querySelector('input[name="payment-method"]:checked').value;
+
+            const subtotal = cart.reduce((sum, item) => sum + (item.product.price * item.quantity), 0);
+            const shipping = subtotal > 499 ? 0 : 50;
+            const total = subtotal + shipping;
+
+            const orderId = 'ECO-' + Math.floor(100000 + Math.random() * 900000);
+            const orderDate = new Date().toLocaleDateString('en-IN', { year: 'numeric', month: 'short', day: 'numeric' });
+
+            lastOrderDetails = {
+                orderId,
+                orderDate,
+                customer: { name, phone, email, address, city, pincode },
+                paymentMethod,
+                items: [...cart],
+                subtotal,
+                shipping,
+                total
+            };
+
+            // Clear Cart
+            cart = [];
+            saveCart();
+
+            navigateTo('order-confirmation');
+        }
+
+        function renderOrderConfirmationPage() {
+            if (!lastOrderDetails) {
+                return `<div class="p-12 text-center">No recent order found. <button onclick="navigateTo('home')" class="text-emerald-600 underline">Go Home</button></div>`;
+            }
+
+            const o = lastOrderDetails;
+
+            return `
+                <div class="bg-slate-50 min-h-screen py-10">
+                    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 space-y-6">
+                        
+                        <!-- Confirmation Alert Box -->
+                        <div class="bg-emerald-600 text-white p-8 rounded-3xl text-center shadow-xl space-y-3 no-print">
+                            <div class="w-16 h-16 bg-white/20 text-white rounded-full flex items-center justify-center mx-auto text-3xl">
+                                <i class="fa-solid fa-circle-check"></i>
+                            </div>
+                            <h1 class="text-2xl sm:text-3xl font-black">Thank You! Order Confirmed</h1>
+                            <p class="text-emerald-100 text-sm">Your order ID is <strong>${o.orderId}</strong>. A confirmation email has been sent to ${o.customer.email}.</p>
+                            
+                            <div class="pt-2 flex items-center justify-center gap-4">
+                                <button onclick="window.print()" class="px-5 py-2.5 bg-white text-emerald-800 font-bold rounded-xl text-xs hover:bg-emerald-50 transition-colors shadow-sm flex items-center gap-2">
+                                    <i class="fa-solid fa-print"></i> Download / Print Bill
+                                </button>
+                                <button onclick="navigateTo('shop')" class="px-5 py-2.5 bg-emerald-800 text-white font-bold rounded-xl text-xs hover:bg-emerald-900 transition-colors">
+                                    Continue Shopping
+                                </button>
+                            </div>
+                        </div>
+
+                        <!-- AUTOMATED PRINTABLE INVOICE / BILL DOCUMENT -->
+                        <div id="printable-invoice" class="bg-white p-8 sm:p-12 rounded-3xl border border-slate-200 shadow-md space-y-8 text-slate-800">
+                            
+                            <!-- Invoice Top Banner -->
+                            <div class="flex justify-between items-start border-b border-slate-200 pb-6">
+                                <div>
+                                    <div class="flex items-center gap-2 text-emerald-700 font-black text-2xl">
+                                        <i class="fa-solid fa-leaf"></i> EcoSphere Store
+                                    </div>
+                                    <p class="text-xs text-slate-500 mt-1">100% Sustainable & Eco-Friendly Retailers</p>
+                                    <p class="text-xs text-slate-500">GSTIN: 27AABCE1234F1Z0 | India</p>
+                                </div>
+                                <div class="text-right">
+                                    <h2 class="text-xl font-black text-slate-900 uppercase tracking-widest">TAX INVOICE</h2>
+                                    <p class="text-xs font-bold text-slate-700 mt-1">Invoice #: ${o.orderId}</p>
+                                    <p class="text-xs text-slate-500">Date: ${o.orderDate}</p>
+                                </div>
+                            </div>
+
+                            <!-- Customer & Payment Metadata -->
+                            <div class="grid grid-cols-2 gap-6 text-xs">
+                                <div>
+                                    <h4 class="font-bold text-slate-500 uppercase tracking-wider mb-2">Billed To:</h4>
+                                    <p class="font-bold text-sm text-slate-900">${o.customer.name}</p>
+                                    <p class="text-slate-600">${o.customer.address}</p>
+                                    <p class="text-slate-600">${o.customer.city} - ${o.customer.pincode}</p>
+                                    <p class="text-slate-600">Phone: ${o.customer.phone}</p>
+                                </div>
+                                <div class="text-right">
+                                    <h4 class="font-bold text-slate-500 uppercase tracking-wider mb-2">Payment Details:</h4>
+                                    <p class="font-bold text-slate-800">Method: ${o.paymentMethod}</p>
+                                    <p class="text-emerald-700 font-bold">Status: PAID / CONFIRMED</p>
+                                </div>
+                            </div>
+
+                            <!-- Products Bill Table -->
+                            <div>
+                                <table class="w-full text-left text-xs border-collapse">
+                                    <thead>
+                                        <tr class="bg-slate-100 border-b border-slate-200 text-slate-700 font-bold">
+                                            <th class="p-3">#</th>
+                                            <th class="p-3">Product Description</th>
+                                            <th class="p-3 text-center">Qty</th>
+                                            <th class="p-3 text-right">Unit Price</th>
+                                            <th class="p-3 text-right">Total</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody class="divide-y divide-slate-100">
+                                        ${o.items.map((item, idx) => `
+                                            <tr>
+                                                <td class="p-3 text-slate-400">${idx + 1}</td>
+                                                <td class="p-3 font-semibold text-slate-800">${item.product.name}</td>
+                                                <td class="p-3 text-center font-bold">${item.quantity}</td>
+                                                <td class="p-3 text-right">₹${item.product.price}</td>
+                                                <td class="p-3 text-right font-bold">₹${item.product.price * item.quantity}</td>
+                                            </tr>
+                                        `).join('')}
+                                    </tbody>
+                                </table>
+                            </div>
+
+                            <!-- Invoice Total Calculation -->
+                            <div class="flex justify-end pt-4 border-t border-slate-200">
+                                <div class="w-64 space-y-2 text-xs">
+                                    <div class="flex justify-between text-slate-600">
+                                        <span>Subtotal:</span>
+                                        <span class="font-bold">₹${o.subtotal}</span>
+                                    </div>
+                                    <div class="flex justify-between text-slate-600">
+                                        <span>Shipping Charges:</span>
+                                        <span class="font-bold">${o.shipping === 0 ? 'FREE' : '₹' + o.shipping}</span>
+                                    </div>
+                                    <div class="flex justify-between text-sm font-black text-slate-900 pt-2 border-t border-slate-300">
+                                        <span>Total Amount:</span>
+                                        <span class="text-emerald-700">₹${o.total}</span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Eco Footer Note -->
+                            <div class="text-center pt-8 border-t border-slate-100 text-[11px] text-slate-400 space-y-1">
+                                <p class="font-semibold text-emerald-700"><i class="fa-solid fa-tree mr-1"></i> This order offset approximately ${o.items.reduce((sum, item)=>sum+(item.product.ecoPoints*item.quantity),0)} plastic items!</p>
+                                <p>Thank you for supporting small sustainable businesses and preserving our oceans.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            `;
+        }
+
+        function renderAboutPage() {
+            return `
+                <div class="bg-slate-50 min-h-screen py-16">
+                    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 space-y-10">
+                        <div class="text-center space-y-3">
+                            <span class="text-emerald-600 font-bold text-xs uppercase tracking-widest bg-emerald-50 px-3 py-1 rounded-full">Our Purpose</span>
+                            <h1 class="text-3xl sm:text-4xl font-extrabold text-slate-900">Crafting a Plastic-Free Future</h1>
+                            <p class="text-slate-600 text-sm max-w-xl mx-auto">EcoSphere was founded with a single mission: to eliminate single-use plastic from everyday living across India through beautiful, functional alternatives.</p>
+                        </div>
+
+                        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                            <div class="bg-white p-6 rounded-3xl border border-slate-200 text-center space-y-3">
+                                <i class="fa-solid fa-seedling text-3xl text-emerald-600"></i>
+                                <h3 class="font-bold text-base text-slate-800">Ethically Sourced</h3>
+                                <p class="text-xs text-slate-500">Every bamboo flask and organic cotton bag is handcrafted by local Indian artisans.</p>
+                            </div>
+                            <div class="bg-white p-6 rounded-3xl border border-slate-200 text-center space-y-3">
+                                <i class="fa-solid fa-box text-3xl text-sky-600"></i>
+                                <h3 class="font-bold text-base text-slate-800">Zero Plastic Packaging</h3>
+                                <p class="text-xs text-slate-500">We ship all orders using recycled cardboard, paper tape, and compostable plant wraps.</p>
+                            </div>
+                            <div class="bg-white p-6 rounded-3xl border border-slate-200 text-center space-y-3">
+                                <i class="fa-solid fa-hand-holding-heart text-3xl text-teal-600"></i>
+                                <h3 class="font-bold text-base text-slate-800">Plant a Tree Program</h3>
+                                <p class="text-xs text-slate-500">1% of all revenue goes directly towards reforestation initiatives in forest reserves.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            `;
+        }
+
+        function toggleWishlist(productId) {
+            const index = wishlist.indexOf(productId);
+            if (index > -1) {
+                wishlist.splice(index, 1);
+                showToast('Removed from wishlist', 'info');
+            } else {
+                wishlist.push(productId);
+                showToast('Added to wishlist!', 'success');
+            }
+            localStorage.setItem('ecosphere_wishlist', JSON.stringify(wishlist));
+            updateWishlistBadge();
+            if (activePage === 'home' || activePage === 'shop') {
+                navigateTo(activePage, false);
+            }
+        }
+
+        function updateWishlistBadge() {
+            const badge = document.getElementById('wishlist-badge');
+            if (badge) {
+                badge.innerText = wishlist.length;
+                if (wishlist.length > 0) {
+                    badge.classList.remove('hidden');
+                } else {
+                    badge.classList.add('hidden');
+                }
+            }
+        }
+
+        function showWishlistModal() {
+            if (wishlist.length === 0) {
+                showToast('Your wishlist is empty!', 'info');
+                return;
+            }
+            filterByCategory('All');
+            navigateTo('shop');
+            showToast(`Showing ${wishlist.length} saved wishlist items`, 'info');
+        }
+
+        function filterByCategory(cat) {
+            currentFilterCategory = cat;
+            navigateTo('shop');
+        }
+
+        function handleSearchInput(val) {
+            searchQuery = val;
+            navigateTo('shop');
+        }
+
+        function handleGlobalSearch(e) {
+            searchQuery = e.target.value;
+            if (e.key === 'Enter') {
+                navigateTo('shop');
+            }
+        }
+
+        function handlePriceFilter(val) {
+            priceFilterMax = parseInt(val);
+            navigateTo('shop');
+        }
+
+        function handleSortChange(val) {
+            selectedSort = val;
+            navigateTo('shop');
+        }
+
+        function resetFilters() {
+            currentFilterCategory = 'All';
+            searchQuery = '';
+            priceFilterMax = 2000;
+            selectedSort = 'featured';
+            navigateTo('shop');
+        }
+
+        function toggleMobileMenu() {
+            const menu = document.getElementById('mobile-menu');
+            menu.classList.toggle('hidden');
+        }
+
+        function showToast(message, type = 'success') {
+            const container = document.getElementById('toast-container');
+            if (!container) return;
+
+            const toast = document.createElement('div');
+            toast.className = `pointer-events-auto px-4 py-3 rounded-2xl text-xs font-bold text-white shadow-xl flex items-center gap-2 transform transition-all duration-300 translate-y-2 opacity-0 ${type === 'success' ? 'bg-gradient-to-r from-emerald-600 to-teal-600' : 'bg-slate-800'}`;
+            toast.innerHTML = `<i class="fa-solid ${type === 'success' ? 'fa-circle-check' : 'fa-circle-info'}"></i> ${message}`;
+
+            container.appendChild(toast);
+            setTimeout(() => {
+                toast.classList.remove('translate-y-2', 'opacity-0');
+            }, 10);
+
+            setTimeout(() => {
+                toast.classList.add('opacity-0');
+                setTimeout(() => toast.remove(), 300);
+            }, 3000);
+        }
+
+        function handleSubscribe(e) {
+            e.preventDefault();
+            showToast('Thank you for joining our Green Club!', 'success');
+            e.target.reset();
+        }
+
+        function initHero3DEffects() {
+            // Optional subtle parallax effect on hero mouse move
+        }
+    </script>
+</body>
+</html>
